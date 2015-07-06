@@ -30,7 +30,26 @@
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 
   
-  <link rel="stylesheet" href="styles/main.css">
+  <style>
+/*
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+body {
+  background: #fafafa;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+  overflow:hidden;
+}
+
+
+
+</style>
   
 
   
@@ -13014,7 +13033,150 @@ Fired when the search element returns a result.
 
 </script>
 <dom-module id="paper-drawer-panel" assetpath="bower_components/paper-drawer-panel/">
-  <link rel="import" type="css" href="bower_components/paper-drawer-panel/paper-drawer-panel.css">
+  <style>
+/**
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+
+*/
+:host {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+iron-selector > #drawer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: white;
+  will-change: transform;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+
+  @apply(--paper-drawer-panel-drawer-container);
+}
+
+.transition > #drawer {
+  transition: -webkit-transform ease-in-out 0.3s, width ease-in-out 0.3s;
+  transition: transform ease-in-out 0.3s, width ease-in-out 0.3s;
+}
+
+.left-drawer > #drawer {
+  @apply(--paper-drawer-panel-left-drawer-container);
+}
+
+.right-drawer > #drawer {
+  left: auto;
+  right: 0;
+
+  @apply(--paper-drawer-panel-right-drawer-container);
+}
+
+iron-selector > #main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  @apply(--paper-drawer-panel-main-container);
+}
+
+.transition > #main {
+  transition: left ease-in-out 0.3s, padding ease-in-out 0.3s;
+}
+
+.right-drawer > #main {
+  left: 0;
+}
+
+.right-drawer.transition > #main {
+  transition: right ease-in-out 0.3s, padding ease-in-out 0.3s;
+}
+
+#main > ::content > [main] {
+  height: 100%;
+}
+
+#drawer > ::content > [drawer] {
+  height: 100%;
+}
+
+#scrim {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity ease-in-out 0.38s, visibility ease-in-out 0.38s;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.narrow-layout > #drawer.iron-selected {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.right-drawer.narrow-layout > #drawer.iron-selected {
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.narrow-layout > #drawer > ::content > [drawer] {
+  border: 0;
+}
+
+.left-drawer.narrow-layout > #drawer:not(.iron-selected) {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+.right-drawer.narrow-layout > #drawer:not(.iron-selected) {
+  left: auto;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.narrow-layout > #main {
+  left: 0 !important;
+  padding: 0;
+}
+
+.right-drawer.narrow-layout > #main {
+  left: 0;
+  right: 0;
+  padding: 0;
+}
+
+.narrow-layout > #main:not(.iron-selected) > #scrim,
+.dragging > #main > #scrim {
+  visibility: visible;
+  opacity: var(--paper-drawer-panel-scrim-opacity, 1);
+}
+
+.narrow-layout > #main > * {
+  margin: 0;
+  min-height: 100%;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+iron-selector:not(.narrow-layout) #main ::content [paper-drawer-toggle] {
+  display: none;
+}
+</style>
 
   <template>
     <iron-media-query id="mq" on-query-matches-changed="_onQueryMatchesChanged" query="[[_computeMediaQuery(forceNarrow, responsiveWidth)]]">
@@ -14572,7 +14734,28 @@ Fired when the search element returns a result.
 </script>
 <dom-module id="paper-item" assetpath="bower_components/paper-item/">
 
-  <link rel="import" type="css" href="bower_components/paper-item/paper-item-shared.css">
+  <style>
+/*
+    @license
+    Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+:host {
+  display: block;
+  min-height: var(--paper-item-min-height, 48px);
+  padding: 0px 16px;
+}
+
+:host > ::content > *:not(:first-child):not(:last-child) {
+  margin-right: 16px;
+}
+
+</style>
 
   <style>
 
@@ -18187,7 +18370,442 @@ margin-right: 2%;
 
 	});
 	</script></dom-module><dom-module id="x-app" assetpath="elements/list-card-over/">
-<link rel="import" type="css" href="elements/list-card-over/x-app.css">
+<style>
+        /*
+        Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+        This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+        The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+        The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+        Code distributed by Google as part of the polymer project is also
+        subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+        */
+
+        :host {
+        display: block;
+
+        }
+
+        .main-panel {
+        background-color: #eee;
+        }
+
+        paper-toolbar {
+        background-color: #42A5F5;
+        }
+
+        .list {
+        padding: 0;
+        /*border-right: 1px solid #ccc;*/
+        }
+
+        .list paper-item {
+        height: 87px;
+        /*border-bottom: 1px solid #dedede;*/
+        background-color: #fafafa;
+        }
+
+        .main-panel[mode=cover] .content {
+        padding: 0 64px 0 4px;
+        }
+
+        .main-panel {
+        --paper-header-panel-cover-container: {
+        left: 64px;
+        };
+        }
+
+        paper-material {
+        height: 950px;
+        background-color: #fff;
+        
+        }
+
+        .main-panel[mode=cover] paper-material {
+        max-width: 800px;
+        margin: 64px auto;
+        }
+
+
+        [data-top]{
+        width:  95%;
+        height: 25%;  
+        background-color:white;
+        margin-left: 2.5%;
+
+        @apply(--layout-horizontal);
+
+        }
+
+        [data-mid]{
+        width:  95%;
+        height: 20%;  
+        background-color:white;
+        margin-left: 2.5%;
+
+        @apply(--layout-vertical);
+
+        }
+        [data-end]{
+        width:  95%;
+        height: 50%;  
+        background-color:white;
+        margin-left: 2.5%;
+
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+
+        }
+        [divider]{
+        border-top: 1px solid #dedede;
+
+        }
+        [box]{
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-left: 2%;
+
+        @apply(--layout-vertical);
+        @apply(--layout-end-justified);
+        @apply(--layout-wrap);
+        @apply(--layout-flex-1);
+
+        }
+        [box1]{
+        margin-top: 2%;
+        margin-bottom: 2%;
+
+        @apply(--layout-vertical);
+        @apply(--layout-wrap);
+        @apply(--layout-flex-3);
+        @apply(--layout-end-justified);  
+
+        }
+        [box2]{
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-right:2%;
+
+        @apply(--layout-end-justified);
+        @apply(--layout-center);
+        @apply(--layout-vertical);
+
+        } 
+        [photo]{
+
+        @apply(--shadow-elevation-8dp);
+
+        }
+
+        [username]{
+        font-size:30px;
+        font-weight: lighter;
+        margin-left: 6%;  
+        margin-bottom: 9%;
+        letter-spacing: -1px;
+
+        }
+        [score]{
+        margin-left: 6%;  
+        font-size:48px;
+        font-weight: 100;
+        letter-spacing: -1px;
+        text-align: center;
+        }
+        [reputation]{
+        font-size:15px;
+        font-weight: 200;
+        color:grey;
+        letter-spacing: .5px;
+        text-align: center;
+
+        }
+
+
+        [sectionheading]{
+        font-size:15px;
+        margin-left: 2%;
+        font-weight: 200;
+        color:grey;
+        letter-spacing: .5px;
+
+
+        }
+
+        [badgecontainer]{
+        margin-left: 2%;
+        margin-right: 1%;
+        margin-bottom: 2%;
+        margin-top: 2%;
+
+        /*@apply(--layout-center);*/
+        /*@apply(--layout-around-justified);*/
+        }
+
+        [badgex]{
+        margin-top: 2%;
+        @apply(--layout-horizontal);
+        @apply(--layout-end);
+        @apply(--layout-scroll);
+        @apply(--layout-wrap);
+
+        }
+        [sectionname]{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        color:#42A5F5;
+        font-size:18px;
+        font-weight: 200px;
+        letter-spacing: -.5px;
+        text-align: left;
+
+        }
+
+        [overviewsectionheader]{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 4%;
+        color:#42A5F5;
+        font-size:18px;
+        font-weight: 200px;
+        letter-spacing: -.5px;
+        text-align: left;
+
+
+        }
+        [certificatesection]{
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+
+        }
+        [overviewsection]{
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        margin-right: 2%;
+
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+
+        /*@apply(--layout-scroll);*/
+
+        }
+        [certificatesectionheader]{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        color:#42A5F5;
+        font-size:18px;
+        font-weight: 200px;
+        letter-spacing: -.5px;
+        text-align: left;
+
+        }
+
+        [certificatecontainer]{
+        margin-left: 3%;
+
+        @apply(--layout-scroll);
+        @apply(--layout-wrap);
+        @applY(--layout-flex);
+
+        }
+
+        [certificate]{
+        margin: 2% 2% 2%  ;
+
+        @apply(--layout-horizontal);
+
+
+
+        }
+        [Cbox]{
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-right: 4%;
+      /*  width:10px;
+        height: 100px;
+        background-color: #f2f2f2;*/
+
+        @apply(--layout-flex);
+
+        }
+
+        [certificate-description]{
+        /*margin: 6% 4% 4% 2%;*/
+        color:black;
+        font-size:16px;
+        font-weight: lighter;
+        letter-spacing: -.40px;
+        text-align: justify;
+
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+        
+        @apply(--layout-wrap);
+
+
+        }
+        [overviewcontainer]{
+        margin-left: 3%;
+        maring-right:3%;
+        @apply(--layout-vertical)
+        @apply(--layout-wrap);
+        @applY(--layout-flex);
+
+        }
+
+        [overviewheader]{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        color:grey;
+        font-size:18px;
+        font-weight: lighter;
+        letter-spacing: -.5px;
+        text-align: left;
+
+
+
+        }
+
+        [jobandlocation]{
+        margin: 2% 2% 2% 2% ;
+        margin-left: 3%;
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+
+        }
+        [job]{
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+        }
+        [location]{
+        @apply(--layout-vertical);
+        @apply(--layout-flex);o
+        verflow: hidden;
+        }
+        [job-heading]{
+
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        color:grey;
+        font-size:16px;
+        font-weight: lighter;
+        letter-spacing: -.5px;
+        text-align: left;
+
+        }
+        [location-heading]{
+
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        color:grey;
+        font-size:18px;
+        font-weight: lighter;
+        letter-spacing: -.5px;
+        text-align: left;
+
+        }
+        [job-name]{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        color:black;
+        font-size:16px;
+        font-weight: 300;
+        letter-spacing: -.5px;
+        text-align: left;
+
+        }
+        [location-name]{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        color:black;
+        font-size:18px;
+        font-weight: 300;
+        letter-spacing: -.5px;
+        text-align: left;
+
+        }
+        [achievements]{
+        margin: 2% 2% 2% 2% ;
+        margin-left: 3%;
+        @apply(--layout-vertical);
+        margin-right: 3%;
+
+
+
+        }
+
+        [achievements-heading]{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        color:grey;
+        font-size:16px;
+        font-weight: lighter;
+        letter-spacing: -.5px;
+        text-align: left;
+
+        }
+        [achievement-description]{
+        margin-top: 3%;
+        margin-bottom: 1%;
+        margin-left: 4%;
+        margin-right: 4px;
+        color:black;
+        font-size:16px;
+        font-weight: 300;
+        letter-spacing: -.5px;
+        text-align: justify; 
+        /*@apply(--layout-scroll);*/
+
+        }
+        [skills]{
+        margin: 2% 2% 2% 2% ;
+        margin-left: 3%;
+        margin-right: 3%;
+        @apply(--layout-vertical);
+
+
+        }
+        [skill-heading]{
+
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 2%;
+        color:grey;
+        font-size:16px;
+        font-weight: lighter;
+        letter-spacing: -.5px;
+        text-align: left;
+
+
+        }
+        [skill-description]{
+        margin-top: 3%;
+        margin-bottom: 1%;
+        margin-left: 4%;
+        color:black;
+        font-size:16px;
+        font-weight: 300;
+        letter-spacing: -.5px;
+        text-align: justify; 
+        /*@apply(--layout-scroll);*/
+
+        }
+
+</style>
 <style>
 [parent]{
     
@@ -18448,7 +19066,63 @@ height: 100px;
 
 </dom-module>
 <dom-module id="index-nav" assetpath="elements/index-nav/">
-<link rel="import" type="css" href="elements/index-nav/index-nav.css">
+<style>
+        /*
+        Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+        This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+        The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+        The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+        Code distributed by Google as part of the polymer project is also
+        subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+        */
+
+        :host {
+        display: block;
+
+        }
+
+        .main-panel {
+        background-color: #eee;
+        }
+
+        paper-toolbar {
+        background-color: #42A5F5;
+        }
+
+        .list {
+        padding: 0;
+        /*border-right: 1px solid #ccc;*/
+        }
+
+        .list paper-item {
+        height: 87px;
+        /*border-bottom: 1px solid #dedede;*/
+        background-color: #fafafa;
+        }
+
+        .main-panel[mode=cover] .content {
+        padding: 0 64px 0 4px;
+        }
+
+        .main-panel {
+        --paper-header-panel-cover-container: {
+        left: 64px;
+        };
+        }
+
+        [main-page] {
+        height: 950px;
+        background-color: #fff;
+        }
+
+        .main-panel[mode=cover] paper-material {
+        max-width: 800px;
+        margin: 64px auto;
+        }
+
+
+  
+</style>
 <style>
 [parent]{
     
@@ -19351,6 +20025,7 @@ Polymer({
    
   <script src="scripts/app.js"></script>
  
+
 
 
 </body></html>
