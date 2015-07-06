@@ -57,30 +57,107 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <body unresolved class="fullbleed layout vertical">
 
-  <span id="browser-sync-binding"></span>
+<!--   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
-<!--   <paper-header-panel main mode="standard"> -->
-
-
-      <!-- <span><gdg-nav></gdg-nav></span> -->
-
-      <!-- <span><gdg-login></gdg-login></span> -->
-            <!-- <span><gdg-profile></gdg-profile></span> -->
-            
-<!-- <x-app></x-app> -->
-<!-- <my-greeting></my-greeting> -->
+  <paper-header-panel main mode="standard">
+<!-- <x-app></x-app> --> --> -->
 <index-nav></index-nav>
+<!-- <gdg-logo></gdg-logo> -->
+<!-- </paper-header-panel> -->
 
+
+
+<!-- <dom-module id="my-app">
+<style>
+</style>
+<template>
+
+  <iron-ajax
+      id="ajax"
+      handle-as="json"
+      content-type="application/json"
+      method="POST"
+      on-response="hresponse"
+      debounce-duration="3000">
+  </iron-ajax>
+  <button on-click="setajax">Click me</button>
+</template>
+<script>
+Polymer({
+  is: "my-app",
+  setajax: function () {
+      var sKey='csrftoken';
+      var csrf_token=decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+      console.log(csrf_token);
+      this.$.ajax.url="http://127.0.0.1:8000/rest-auth/login/";
+      this.$.ajax.body='{ "username": "qwertyuiop","password": "qwertyuiop"}';
+      // this.$.ajax.headers={"X-CSRFToken":csrf_token};
+      console.log(this.$.ajax.header);
+      this.$.ajax.generateRequest();
+
+  },
+
+  hresponse: function(request) {
+    console.log(request.detail.response);
+    console.log(this.$.ajax.lastResponse);
+    console.log(this.$.ajax.params);
+
+  }
+});
+</script>
+</dom-module>
+<my-app></my-app> -->
+
+<dom-module id="my-app">
+<style>
+</style>
+<template>
+
+  <iron-ajax
+      id="ajax"
+      handle-as="json"
+      content-type="application/json"
+     
+      on-response="hresponse"
+      debounce-duration="3000">
+  </iron-ajax>
+  <button on-click="setajax">Click me</button>
+</template>
+<script>
+Polymer({
+  is: "my-app",
+  setajax: function () {
+      var sKey='csrftoken';
+      var csrf_token=decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+      console.log(csrf_token);
+      this.$.ajax.url="http://127.0.0.1:8000/members";
+      // this.$.ajax.body='{ "username": "qwertyuiop","password": "qwertyuiop"}';
+      // this.$.ajax.headers={"X-CSRFToken":csrf_token};
+      console.log(this.$.ajax.header);
+      this.$.ajax.generateRequest();
+
+  },
+
+  hresponse: function(request) {
+    console.log(request.detail.response);
+    console.log(this.$.ajax.lastResponse);
+    console.log(this.$.ajax.params);
+
+  }
+});
+</script>
+</dom-module>
+<!-- <my-app></my-app> -->
+
+// <script>
+  
+       x=document.getElementById("test1111");
+       el=document.createElement('gdg-logo');
+       x.$.middleBar.appendChild(el);
+  
+// // </script>
    <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
-  <!-- endbuild
-</body>
-<!-- <footer>
-
-            <center><iron-image style="width:80px; height:80px;"  fadein="True"  sizing="cover" src="http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/photo.jpg"></iron-image>
-      <center>Hack/Learn/Code
-    </footer>
-  </template> -->
-</span>  
+ </body>
 
 </html>
