@@ -19297,21 +19297,60 @@ Polymer({
 </dom-module></div>
 </div>
 
-  <span id="browser-sync-binding"></span>
-  <template is="dom-bind" id="app1">
-  <paper-header-panel main="" mode="standard">
-  <x-app></x-app>
-</paper-header-panel>
+ --&gt; --&gt;
+<index-nav></index-nav>
+
+
+
+
+
+
+
+<dom-module id="my-app">
+<style>
+</style>
+<template>
+
+  <iron-ajax id="ajax" handle-as="json" content-type="application/json" on-response="hresponse" debounce-duration="3000">
+  </iron-ajax>
+  <button on-click="setajax">Click me</button>
+</template>
 <script>
+Polymer({
+  is: "my-app",
+  setajax: function () {
+      var sKey='csrftoken';
+      var csrf_token=decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+      console.log(csrf_token);
+      this.$.ajax.url="http://127.0.0.1:8000/members";
+      // this.$.ajax.body='{ "username": "qwertyuiop","password": "qwertyuiop"}';
+      // this.$.ajax.headers={"X-CSRFToken":csrf_token};
+      console.log(this.$.ajax.header);
+      this.$.ajax.generateRequest();
+
+  },
+
+  hresponse: function(request) {
+    console.log(request.detail.response);
+    console.log(this.$.ajax.lastResponse);
+    console.log(this.$.ajax.params);
+
+  }
+});
+</script>
+</dom-module>
+
+
+// <script>
   
        x=document.getElementById("test1111");
        el=document.createElement('gdg-logo');
        x.$.middleBar.appendChild(el);
   
-</script>
+// // </script>
    
   <script src="scripts/app.js"></script>
  
 
 
-</template></body></html>
+</body></html>
