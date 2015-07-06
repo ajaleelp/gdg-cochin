@@ -1,0 +1,110 @@
+<dom-module id="gdg-login">
+<style>
+
+   paper-input{
+   	 	color:#FAFAFA;
+   }
+
+   .submit_button{
+   		background-color:#1976D2;
+   		
+   }
+[login]{
+
+@apply(--layout-vertical);
+@apply(--layout-center);
+@apply(--layout-center-justified);
+@apply(--layout-fit);
+}
+gold-email-input{
+  width: 250px;
+}
+paper-input-container{
+  width: 250px;
+}
+</style>
+<template>
+  <iron-ajax
+      id="ajax"
+      handle-as="json"
+      url="http://127.0.0.1:8000/rest-auth/login/"
+      content-type="application/json"
+      method="POST"
+      on-response="hresponse"
+      debounce-duration="3000">
+  </iron-ajax>
+<br></br>
+<div class="horizontal center-justified layout center" >
+<form is="iron-form" id="form">
+
+
+      <div login>
+
+
+              <paper-input-container>
+                                <label>Username</label>
+                                <input  is="iron-input" id="password1" bind-value="{{name}}">
+                        </paper-input-container>
+
+
+                    <paper-input-container>
+                        			  <label>Password</label>
+                        			  <input type = "password" is="iron-input" id="password1" bind-value="{{password}}">
+                        </paper-input-container>
+            				<br><br><br><br>
+                  				<paper-button raised class="submit_button" style="width:200px;" on-click="setajax">
+                  				<paper-ripple></paper-ripple>
+                  					<span style="color:white;text-rendering: optimizeLegibility;">Submit</span>
+                  				</paper-button>
+      			</div>
+</form>
+</div>
+</template>
+<script>
+Polymer({
+  is: "gdg-login",
+  
+  properties:{
+  		name:{
+  			type:String,
+  			notify:true,
+  			
+  		},
+      password:{
+        type:String,
+        notify:true,
+        
+      },
+ 	 },
+	_nameChanged:function(){
+				console.log(this.name);
+	},
+
+    setajax: function () {
+//       var sKey='csrftoken';
+//       var csrf_token=decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+//       console.log(csrf_token);
+//       var user = "qwertyuiop";
+//       var pass = "qwertyuiop";
+//       // this.$.ajax.body='{ "username": "qwertyuiop","password": "qwertyuiop"}';
+//       this.$.ajax.body =JSON.stringify({username:user,password: pass});
+// // };
+//       this.$.ajax.headers={"X-CSRFToken":csrf_token};
+//       console.log(this.$.ajax.body);
+//       this.$.ajax.generateRequest();
+window.location.href = "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/profile.html";
+
+  },
+
+  hresponse: function(request) {
+    console.log(request.detail.response);
+    console.log(this.$.ajax.lastResponse);
+    console.log(this.$.ajax.params);
+
+  }
+
+
+
+});
+</script>
+</dom-module>

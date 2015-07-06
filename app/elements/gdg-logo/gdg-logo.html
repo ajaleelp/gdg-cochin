@@ -1,0 +1,38 @@
+<dom-module id="gdg-logo">
+<style>
+
+[main]{
+
+  /*@apply(--layout-fit);*/
+  @apply(--layout-horizontal);
+  /*@apply(--layout-start);*/
+  /*@apply(--layout-start-justified);*/
+
+}
+[name]{
+  
+  @apply(--layout-center-justified);
+      margin-top: 10%;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: -0.75px;
+}
+</style>
+<template>
+<div main>
+<div>
+<iron-image style="width:80px; height:80px;"  fadein="True"  sizing="cover" src="http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/gdg.jpg"></iron-image>
+</div>
+<div name>
+GDG Next
+</div>
+
+</div>
+</template>
+<script>
+Polymer({
+  is:"gdg-logo",
+  
+});
+</script>
+</dom-module>

@@ -1,0 +1,101 @@
+<dom-module id="my-greeting">
+<style>
+[badgecontainer]{
+  margin: 2% 2% 2% 2%;
+
+}
+</style>
+  <template>
+
+
+
+ <iron-ajax
+      id="ajax" 
+      handle-as="json"
+      
+      last-response="{{menuItems}}"
+      debounce-duration="3000"
+      url = "http://localhost:3000/db"
+      >
+  </iron-ajax>
+
+<!-- <button on-click="setajax">Click me</button> -->
+
+
+
+
+  <!-- <button on-click="order">Order</button>  -->
+   <span>{{menuItems.username}}</span>
+   <div>
+        <iron-image style="width:100px; height:100px;"  fadein="True"  sizing="cover" src$="{{menuItems.profilepicture.url}}"></iron-image>
+   </div>
+
+   <div>{{menuItems.rep}}</div>
+   <div>{{menuItems.job}}</div>
+   <div>{{menuItems.location}}</div>
+   <div>{{menuItems.achievements}}</div>
+      <div>{{menuItems.skills}}</div>
+
+
+ <!--    <template is="dom-repeat" id="menu" items="{{menuItems.employees}}">
+        <div>
+          <span><img style="width:40px; height40px;" src$="{{item.url}}"></span>
+        </div>
+    </template> -->
+    <div>
+    <template is="dom-repeat" id="menu" items="{{menuItems.badges}}">
+                                              <div badgecontainer>
+
+                                               <div>
+                                                        <iron-image style="width:100px; height:100px;"  fadein="True"  sizing="cover" src$="{{item.url}}"></iron-image>
+                                                </div>
+                                              </div>
+
+    </template>
+    </div>
+          <template is="dom-repeat" id="menu" items="{{menuItems.certificates}}">
+                                              <div badgecontainer>
+
+                                               <div>
+                                                        <iron-image style="width:100px; height:100px;"  fadein="True"  sizing="cover" src$="{{item.url}}"></iron-image>
+                                                        <span>{{item.description}}</span>
+                                                </div>
+                                              </div>
+
+    </template>                                    
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-greeting',
+      ready: function() {
+        this.$.ajax.generateRequest();
+
+      },
+
+
+    setajax: function () {
+    // this.$.ajax.url = "http://localhost:3000/db";
+    // this.$.ajax.generateRequest();
+  },
+
+
+      order: function(e) {
+        // var model = e.model;
+        // model.set('item.ordered', model.item.ordered+1);
+        console.log("hello");
+         
+
+
+
+      }
+    });
+  </script>
+
+</dom-module>
+
+
+
+

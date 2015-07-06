@@ -1,0 +1,241 @@
+<dom-module id="x-app">
+<link rel="import" type="css" href="x-app.css">
+<style>
+[parent]{
+    
+    @apply(--layout-center-justified);
+    
+}
+[logo]{
+background-color: red;
+margin-top: 4px;    
+height: 100px;
+ 
+ 
+}
+</style>
+
+  <template>
+    <!-- <span id="testparent"><gdg-nav id="test"></gdg-nav></span> -->
+                <paper-drawer-panel id="drawerPanel" responsive-width="1024px" drawer-width="{{drawerWidth}}" >
+                <paper-header-panel  id = "topper" style=" background-color: #fafafa;"class="list-panel" drawer mode="standard">
+
+                  <paper-toolbar  class$="{{toolbarClass}}"  id="test1111">
+
+                  </paper-toolbar>
+
+                    <paper-menu id="sidemenu" class="list" on-iron-activate="_listTap" selected="{{selectedIndex}}">
+                    <paper-item id="about">About</paper-item>
+                    <paper-item id="badges">Badges</paper-item>
+                    <paper-item id="cert">Certificates</paper-item>
+                    <paper-item id="creds">Creds</paper-item>
+                    <paper-item id="upcoming">Upcoming events</paper-item>
+                    <paper-item id="settings" >Settings</paper-item>
+                    </paper-menu>
+                    </paper-header-panel>
+                    <paper-header-panel class="main-panel" main mode="{{mainMode}}">
+                    <paper-toolbar class$="{{toolbarClass}}">
+                    <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+                  </paper-toolbar>
+
+
+<iron-ajax
+      id="ajax" 
+      handle-as="json"
+      
+      last-response="{{profile}}"
+      debounce-duration="3000"
+      url = "http://localhost:3000/db"
+      >
+  </iron-ajax>
+
+
+
+
+<iron-pages selected=0 id="ironpage">
+  
+<div id="0">
+  <paper-material id="mypage" elevation="3">        
+            <div data-top id="d0">
+                              <div box>
+                                    <iron-image-circle style="width:120px; height:120px;"  fadein="True"  sizing="cover" src$="{{profile.profilepicture.url}}"></iron-image-circle>
+                              </div>
+                              <div box1>
+                                    <span username>{{profile.username}}</span>
+                              </div>
+                              <div box2>
+                                    <div score>{{profile.rep}}</div>
+                                    <div reputation>Reputation</div>
+                              </div>
+            </div> 
+            <div data-mid id="d1" divider>
+                                              <div sectionname>Badges
+                                              </div>
+                                               <div badgex>
+                                                <template is="dom-repeat" id="menu" items="{{profile.badges}}">                                              
+                                                  <div badgecontainer>                                                    
+                                                    <div>
+                                                       <iron-image-circle style="width:100px; height:100px;"  fadein="True"  sizing="cover" src$="{{item.url}}"></iron-image-circle>
+                                                    </div>
+                                                  </div>
+                                                </template>
+                                              </div>                          
+                </div>              
+            <div data-end  divider class="flex" id="d2" >
+                        <div certificatesection >
+                                  <span certificatesectionheader>Certificates</span>
+                                              <div certificatecontainer >
+                                                      <br><br>
+                                                    <template is="dom-repeat" id="menu" items="{{profile.certificates}}">                                                        
+                                                      <div certificate >
+                                                        <div Cbox>
+                                                            <iron-image-circle style="width:100px; height: 100px;"  fadein="True"  sizing="cover" src$="{{item.url}}"></iron-image-circle>
+                                                        </div>
+                                                        <span certificate-description>{{item.description}}</span>
+                                                      </div>
+                                                    </template>
+                                              </div> 
+                        </div>                                                
+
+                    <div overviewsection >
+                                                  <span overviewsectionheader  >Overview</span>
+                                                  <br><br>
+                                                  <div overviewcontainer>
+                                                        <div jobandlocation>
+                                                              <div job >
+                                                                 <div job-heading>Job</div><div job-name>{{profile.job}}</div>
+                                                              </div>
+                                                              <div location>
+                                                                <div location-heading>Location</div><div location-name>{{profile.location}}</div>
+                                                              </div>
+                                                        </div><br><br>
+                                                        <div achievements>
+                                                                <div achievements-heading>Achievements</div>
+                                                                <div achievement-description>{{profile.achievements}}</div>
+                                                        </div><br><br>
+                                                        <div skills >
+                                                            <div skill-heading>Skills</div>
+                                                            <div skill-description>{{profile.skills}}</div>
+                                                        </div>
+                                                  </div>
+                  </div>
+             </div>
+  </paper-material>
+</div>
+<div id="1">
+<paper-material>
+badges
+</paper-material>
+</div>
+<div id="2">
+<paper-material>
+certficates
+</paper-material>
+</div>
+
+
+
+
+<div id="3">
+<paper-material>
+creds
+</paper-material>
+</div>
+<div id="4">
+<paper-material>
+upcoming events
+</paper-material>
+</div>
+
+<div id="5">
+<paper-material>
+settings
+</paper-material>
+</div>
+
+</iron-pages>
+
+
+        </paper-header-panel>
+        </paper-drawer-panel>
+        <iron-media-query query="(max-width: 780px)" query-matches="{{_isMobile}}"></iron-media-query>
+        </template>
+    <script>
+
+    Polymer({
+
+      is: 'x-app',
+
+      properties: {
+
+        _isMobile: {
+          type: Boolean,
+          observer: '_isMobileChanged'
+        },
+        selectedIndex: {
+          type: Number,
+          
+          observer: '_selectedIndexChanged'
+      },
+        selectpage:{
+            type: Number,
+            value : 0,
+            observer: '_selectedpageChanged'
+      }
+
+      },
+
+
+      ready: function() {
+       this.$.ajax.generateRequest();
+       },
+
+      
+
+      _listTap: function() {
+        this.$.drawerPanel.closeDrawer();
+      },
+ 
+      _isMobileChanged: function(isMobile) {
+        this.mainMode = isMobile ? 'seamed' : 'cover';
+        this.drawerWidth = isMobile ? '' : '290px';
+        this.toolbarClass = isMobile ? '' : 'tall';
+        var flag = 0;
+        isMobile ? Polymer.dom(document.getElementById("testparent")).removeChild(Polymer.dom(document.getElementById("testparent")).childNodes[0]):'';
+        
+        this.updateStyles();
+        
+      },
+
+    _selectedIndexChanged: function() {
+        if(this.selectedIndex === 0){ this.selectpage=0; }
+        if(this.selectedIndex === 1){ this.selectpage=1; }
+        if(this.selectedIndex === 2){ this.selectpage=2; }
+        if(this.selectedIndex === 3){ this.selectpage=3; }
+        if(this.selectedIndex === 4){ this.selectpage=4; }
+        if(this.selectedIndex === 5){ this.selectpage=5; }
+    },
+
+
+    _selectedpageChanged: function() {
+
+      console.log(this.selectedIndex,this.selectpage);
+    },
+
+    behaviors: [
+      Polymer.IronResizableBehavior
+    ],
+      listeners: {
+      'iron-resize': '_onIronResize'
+      
+    },
+    _onIronResize:function(){
+      console.log("resize");
+    }
+
+
+    });
+
+  </script>    
+
+</dom-module>

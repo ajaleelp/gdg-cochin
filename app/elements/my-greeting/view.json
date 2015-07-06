@@ -1,0 +1,36 @@
+{
+    "username": "arunp",
+    "profilepicture": {
+        "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/arun.jpg"
+    },
+    "rep": "200",
+    "job": "Programmer",
+    "location": "Cochin",
+    "achievements": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu urna ut justo sollicitudin feugiat nec id tellus. Cras fermentum eget magna nec eleifend. Mauris tristique purus ante, in placerat odio cursus sit amet.",
+    "skills": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.",
+    "badges": [
+        {
+            "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/fire.jpg"
+        },
+        {
+            "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/fire.jpg"
+        },
+        {
+            "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/fire.jpg"
+        }
+    ],
+    "certificates": [
+        {
+            "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/shout.jpg",
+            "description": "Hello world this is a test"
+        },
+        {
+            "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/shout.jpg",
+            "description": "Hello world this is a test"
+        },
+        {
+            "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/shout.jpg",
+            "description": "Hello world this is a test"
+        }
+    ]
+}

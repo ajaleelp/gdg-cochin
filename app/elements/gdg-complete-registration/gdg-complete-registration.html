@@ -1,0 +1,237 @@
+<dom-module id="gdg-complete-registration">
+<style>
+::host{
+  @apply(--shadow-elevation-2dp);
+};
+ .submit_button{
+   		background-color:#1976D2;
+   		
+   }
+
+[heading]{
+  @apply(--layout-vertical);
+@apply(--layout-center);
+@apply(--layout-center-justified);
+ }  
+[login]{
+
+@apply(--layout-vertical);
+@apply(--layout-center);
+@apply(--layout-center-justified);
+@apply(--layout-fit);
+margin: 4% 4% 4% 4%;
+margin-right: 4%;
+margin-left: 4%;
+}
+[complete-registration-heading]{
+  font-size: 35px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+
+}
+
+[horizontal]{
+  @apply(--layout-horizontal);
+  
+  width: 80%;
+}
+[other]{
+  @apply(--layout-vertical);
+  width: 80%;
+}
+[space]{
+  margin-left: 2%;
+  margin-right: 2%;
+}
+[half]{
+  @apply(--layout-flex-2);
+}
+</style>
+
+<template>
+
+<br></br>
+<div   id = "register-parent" >
+
+<br><br><br>
+<div heading>
+<center><span complete-registration-heading>Complete Registration</span></center><br><br><br>
+</div>
+<form is="iron-form" id="form">
+
+
+      <div login>
+
+                    
+                    <div horizontal>
+                    <br>
+                    
+                    <paper-input-container half>
+                                <label>First Name</label>
+                                <input required is="iron-input" id="first" bind-value="{{firstName}}">
+                    </paper-input-container>
+                    <span space></span>
+                    
+                    <paper-input-container half>
+                        			  <label>Last Name</label>
+                        			  <input  is="iron-input" id="last" bind-value="{{lastName}}">
+                    </paper-input-container>
+                  
+                    </div>
+                      <br>
+                   <div horizontal>
+                    <paper-input-container half>
+                                <label>Job</label>
+                                <input required is="iron-input" id="job" bind-value="{{job}}">
+                    </paper-input-container>
+                    <span space></span>
+
+                      <paper-input-container half>
+                                <label>Skills</label>
+                                <input  required is="iron-input" id="skills" bind-value="{{skills}}">
+                    </paper-input-container>
+                    </div>
+                    <br>
+                     <div other>
+                     <paper-input-container>
+                                <label>Company</label>
+                                <input  required is="iron-input" id="company" bind-value="{{company}}">
+                    </paper-input-container>
+                    <br>
+                     <paper-input-container>
+                                <label>Contact</label>
+                                <input  is="iron-input" prevent-invaild-input allowed-pattern="[0-9]" required  id="contact"  bind-value="{{contact}}">
+                    </paper-input-container>
+                    </div>
+                    <br>
+                      <div horizontal>
+                    <paper-input-container half>
+                                <label>Location</label>
+                                <input required is="iron-input" id="location" bind-value="{{location}}">
+                    </paper-input-container>
+                    <span space></span>
+
+                      <paper-input-container half>
+                                <label>Achievements</label>
+                                <input  required is="iron-input" id="achievements" bind-value="{{achievements}}">
+                    </paper-input-container>
+                    </div>
+                    <br>
+                           <div other>
+                     <paper-input-container>
+                                <label>About me</label>
+                                <input  required is="iron-input" id="about" bind-value="{{about}}">
+                    </paper-input-container> 
+                    <br>
+                    </div>
+            				            <br><br><br><br>
+                  				<paper-button raised class="submit_button" style="width:200px;" on-click="_submitclicked">
+                  				<paper-ripple></paper-ripple>
+                  					<span style="color:white;text-rendering: optimizeLegibility;" >Submit</span>
+                  				</paper-button>
+
+
+
+      			</div>
+           
+
+</div>
+</form>
+</div>
+</template>
+<script>
+Polymer({
+  is: "gdg-complete-registration",
+  
+  properties:{
+  		firstName:{
+  			type:String,
+  			notify:true,
+  			observer:"_nameChanged",
+  		},
+
+        lastName:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+
+        job:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+
+        skills:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+
+        company:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+
+        contact:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+
+        company:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+
+        contact:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+
+        location:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+        achievements:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+        about:{
+        type:String,
+        notify:true,
+        observer:"_nameChanged",
+      },
+
+
+ 	 },
+	_nameChanged:function(){
+				
+
+	},
+  _submitclicked:function(){
+
+     // document.getElementById("register-parent").appendChild(x)
+     // document.getElementById("alert").hidden = false;
+     console.log(this.firstName,this.lastName,this.job,this.company,this.contact,this.location,this.achievements,this.about);
+        
+        
+
+  },  
+});
+</script>
+</dom-module>

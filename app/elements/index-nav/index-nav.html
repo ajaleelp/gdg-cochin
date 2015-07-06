@@ -1,0 +1,523 @@
+<dom-module id="index-nav">
+<link rel="import" type="css" href="index-nav.css">
+<style>
+[parent]{
+    
+    @apply(--layout-center-justified);
+    
+}
+[menu]{
+  /*margin-left: 5%;*/
+}
+[about-container]{
+  @apply(--layout-vertical);
+  @apply(--layout-center);
+  @apply(--layout-center-justified);
+  @apply(--layout-scroll);
+  
+} 
+[about]{
+  font-size: 35px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+[about-content]{
+  font-size:16px;
+  font-weight: 100px
+  leter-spacing: -1px;
+  margin: 4% 9% 9% 9%;
+  text-align: justify;  
+
+}
+[about-paragraph]{
+    margin-left:2%;
+    margin-right: 2%;
+}
+
+[about-heading]{
+    margin-bottom: 2%;
+    margin-left: 2%;
+    font-size:25px;
+    font-weight: lighter;
+    letter-spacing: -1px;
+    text-align: left;
+    text-rendering: optimizeLegibility;
+    line-height: 2;
+    }
+
+/*#########
+Managers
+#########*/
+
+[manager-container]{
+ 
+  /*height: 600px;*/
+  @apply(--layout-vertical);
+  /*@apply(--layout-center);*/
+  @apply(--layout-center-justified);
+  @apply(--layout-flex);
+  magin-top : 20%;
+  margin-left :11%;
+  margin-right:11%;
+
+} 
+[manager-heading]{
+  font-size: 35px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+
+}
+ [divider]{
+        border-top: 1px solid #dedede;
+
+        }
+
+
+[member-container]{
+ 
+  /*height: 600px;*/
+  @apply(--layout-vertical);
+  /*@apply(--layout-center);*/
+  @apply(--layout-center-justified);
+  @apply(--layout-flex);
+  magin-top : 20%;
+  margin-left :11%;
+  margin-right:11%;
+
+} 
+
+[mananger]{
+@apply(--layout-center);
+margin-top:auto;
+margin-left:4%;
+margin-right:4%;
+margin-bottom:auto;
+@apply(--layout-flex);  
+}
+
+[manager-child]{
+  @apply(--layout-horizontal);
+  @apply(--layout-center);
+
+}
+
+[manager-picture]{
+  margin: 2% 2% 2% 2%;
+  /*@apply(--shadow-elevation-2dp);*/
+}
+[manager-details]{
+    margin: 2% 2% 2% 2%;
+
+
+}
+
+[manager-name]{
+    margin-bottom: 2%;
+    font-size:20px;
+    font-weight: 100;
+    letter-spacing: -1px;
+    text-align: left;
+    text-rendering: optimizeLegibility;
+    line-height: 2;
+    }
+[mananger-name-data]{
+    font-size:14px;
+    font-weight: 200;
+    color:grey;
+    letter-spacing:0px;
+    text-align: left;
+    text-rendering: optimizeLegibility;
+
+    }
+
+[member-container]{
+  width: auto;
+height: 600px;
+@apply(--layout-horizontal);
+@apply(--layout-wrap);
+@apply(--layout-scroll);
+
+  
+  margin-left :6%;
+  margin-right:6%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+} 
+[member-heading]{
+  font-size: 35px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+
+}
+[member]{
+  margin: 2% 2% 2% 2%;
+  @apply(--layout-vertical);
+
+}
+[photo-frame]{
+  margin: 2% 2% 2% 2%;
+}
+[member-name]{
+  margin: 2% 2% 2% 2%;
+}
+
+
+[events-heading]{
+  font-size: 35px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+
+}
+
+
+[events-container]{
+ 
+  @apply(--layout-vertical);
+  
+  margin-top : 4%;
+  margin-left :11%;
+  margin-right:11%;
+
+} 
+
+[events]{
+  margin: 2% 4% 2% 4%;
+  height: 200px;
+  @apply(--layout-vertical);
+
+  /*background-color: red;*/
+}   
+[upcoming-events]{
+  height: 400px;
+  margin: 2% 4% 4% 4%;
+ @apply(--layout-vertical);
+ @apply(--layout-wrap);
+ @apply(--layout-scroll);
+  
+
+}
+[event-title]{
+  font-size: 25px;
+  font-weight: 200;
+  text-rendering: optimizeLegibility;
+}
+[event-time]{
+  font-size:16px;
+    font-weight: 200;
+  text-rendering: optimizeLegibility;
+
+}
+
+[event-time-value]{
+  font-size:16px;
+  font-weight: 300;
+  color: grey;
+  text-rendering: optimizeLegibility;
+
+}
+[horizontal]{
+  @apply(--layout-horizontal);
+}
+[event-description]{
+  font-size:16px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+  text-align: justify;
+}
+[event-location]{
+   margin: 0% 4% 4% 4%; 
+    font-size: 25px;
+  font-weight: 200;
+  text-rendering: optimizeLegibility;
+}
+
+
+[login-heading]{
+  font-size: 35px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+
+}
+
+[login-container]{
+ 
+  @apply(--layout-vertical);
+  
+  margin-top : 4%;
+  margin-left :11%;
+  margin-right:11%;
+
+} 
+
+
+
+
+</style>
+
+<template>
+
+
+
+<iron-ajax
+      id="ajax"
+      handle-as="json"  
+      on-response="hresponse"
+      last-response="{{main}}"
+      debounce-duration="3000"
+      url = "http://localhost:3000/db"
+      >
+</iron-ajax>
+            
+                    <paper-drawer-panel id="drawerPanel" responsive-width="1024px" drawer-width="{{drawerWidth}}" >
+                <paper-header-panel  id = "topper" style=" background-color: #fafafa;"class="list-panel" drawer mode="standard">
+
+                  <paper-toolbar  class$="{{toolbarClass}}"  id="test1111">
+
+                  </paper-toolbar>
+
+                    <paper-menu menu id="sidemenu" class="list" on-iron-activate="_listTap" selected="{{selectedIndex}}">
+                    <paper-item id="about">About</paper-item>
+                    <paper-item id="member">Members</paper-item>
+                    <paper-item id="managers">Managers</paper-item>
+                    <paper-item id="events">Upcoming Events</paper-item>
+                    <paper-item id="login">Login</paper-item>
+                    <paper-item id="register">Register</paper-item>
+                   
+                    
+                    </paper-menu>
+                    </paper-header-panel>
+                    <paper-header-panel class="main-panel" main mode="{{mainMode}}">
+                    <paper-toolbar class$="{{toolbarClass}}">
+                    <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+                  </paper-toolbar>
+
+
+<iron-pages selected="{{selectedIndex}}" id="ironpage">  
+<div id="0">
+
+  <paper-material main-page>
+  <br><br><br>
+  <div about-container>
+        <span about>About</span>
+        <br><br><br>
+        <span about-content>
+           <span about-heading>Who are we ?</span><br>
+           <p about-paragraph>   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fringilla id eros id finibus. Nam tincidunt nibh vestibulum pulvinar commodo. Fusce molestie, tellus et sodales tempor, metus magna iaculis metus, eu semper odio nibh eu magna. Integer a gravida dolor.</p>
+           <span about-heading>What do we do?</span><br>
+           <p about-paragraph>  Aliquam bibendum quam vitae mattis pretium. Maecenas fermentum, eros eget congue maximus, purus eros blandit dolor, non bibendum quam dolor et lorem. Quisque ac luctus risus, non volutpat tortor. Maecenas egestas quam dui, a suscipit magna tempor id. Nunc et est nisl. </p>
+            <span about-heading>How to be us ?</span><br>
+            <p about-paragraph>  Integer sodales laoreet risus in venenatis. Aenean finibus finibus enim nec suscipit. Praesent sem est, porta quis diam ultrices, scelerisque facilisis enim. Nunc lectus enim, mollis vel libero et, sollicitudin rutrum orci. Vestibulum lorem felis, volutpat vitae diam a, dapibus ultrices mauris. Fusce lobortis diam tellus, ac faucibus ante elementum nec.</p>
+            <br><br>
+
+  
+
+
+        </span>
+
+
+  </div>        
+  </paper-material>
+</div>
+<div id="1">
+    <paper-material main-page>
+    <br><br><br>
+     <span member-heading><center> Members</center> </span><br><br><br>
+    <div member-container>
+
+
+    
+     <template is="dom-repeat" id="menu" items="{{main.members}}">
+                                               
+                                                          <div member>
+                                                          <paper-material>
+                                                                    <div member-picture>
+                                                                    
+                                                                    <iron-image style="width:150px; height:150px;" class="photo-frame"  fadein="True"  sizing="cover" src$="{{item.url}}"></iron-image>
+                                                                    </div>
+                                                                <div member-name>
+                                                                <paper-ripple></paper-ripple>
+                                                                <center>{{item.name}}</center>
+                                                       
+                                                                </div>
+                                                                </paper-material>
+                                                                
+                                                          </div>  
+                                         
+                                                      
+                   </template>                                              
+
+                                                       
+                                                </div>
+                            </paper-material>
+</div>
+<div id="2">
+              <paper-material main-page>
+                <br><br><br>
+                <span manager-heading><center>Managers</center></span><br><br><br><br><br>
+                <div manager-container>
+                 <div divider><br></div>
+                      <template is="dom-repeat" id="menu" items="{{main.managers}}">
+                       <div manager  class="flex">
+                       
+                         <div manager-child >
+                            <div manager-picture>
+                                  <iron-image-circle style="width:150px; height:150px;"  fadein="True"  sizing="cover" src$="{{item.url}}"></iron-image-circle>
+                            </div>
+                          <div manager-details>
+                            <span manager-name >{{item.name}}</span><br>
+                            <span mananger-name-data >{{item.job}}</span><br>
+                            <span mananger-name-data >{{item.company}}</span><br>
+                          </div>
+                        </div>
+                        
+                      
+                       </div>
+              <div divider><br></div>
+              </template>
+
+                   
+
+                </div>   
+              </paper-material>
+
+</div>
+
+
+
+<div id="3">
+                                <paper-material main-page>
+                                      <br><br><br>
+                                      <span events-heading><center>Events</center></span><br><br>
+                                          <div events-container>
+                                            <div events >
+                                            <div event-title >{{main.events.name}}</div><br>
+                                            <div horizontal>
+                                              <div horizontal>
+                                                    <div event-time >Time : </div> <div event-time-value>{{main.events.time}}</div>
+
+                                              </div>
+                                              <br>
+                                              <div class="flex"></div>
+                                              <div horizontal>
+                                              <div event-time >Date : </div> <div event-time-value>{{main.events.date}}</div>
+                                              </div>
+                                              </div>
+                                            <div event-description>
+                                                  <p>{{main.events.description}}</p>
+                                            </div>
+
+                                          </div>
+                                          <div event-location >Location</div>
+                                          <div upcoming-events>
+
+                                              <google-map disable-default-ui  disable-zoom zoom="15" latitude$="{{main.events.latitude}}" longitude$="{{main.events.longitude}}" fit-to-markers>
+                                              <google-map-marker latitude$= "{{main.events.latitude}}"  longitude$="{{main.events.longitude}}"></google-map-marker>
+                                              
+                                              </google-map>
+                                              
+                                              
+                                            
+
+                                          </div>
+                                      </div>
+                                </paper-material>
+</div>
+
+
+
+<div id="4">
+<paper-material main-page>
+ <br><br><br>
+ <span events-heading><center>Login</center></span><br><br>
+<gdg-login></gdg-login>
+</paper-material>
+</div>
+
+<div id="5">
+<paper-material main-page>
+ <br><br><br>
+ <span events-heading><center>Register</center></span><br><br>
+<gdg-register></gdg-register> 
+
+</paper-material>
+</div>
+</paper-material>
+</div>
+
+</iron-pages>
+
+
+        </paper-header-panel>
+        </paper-drawer-panel>
+        <iron-media-query query="(max-width: 780px)" query-matches="{{_isMobile}}"></iron-media-query>
+        </template>
+        </template>
+    <script>
+
+    Polymer({
+
+      is: 'index-nav',
+
+      properties: {
+                            
+
+                            _isMobile: {
+                              type: Boolean,
+                              observer: '_isMobileChanged'
+                            },
+
+                            selectedIndex: {
+                              type: Number,
+                              value: 4,
+                              observer: '_selectedIndexChanged'
+                          },
+      },
+
+       ready: function() {
+       this.$.ajax.generateRequest();
+       
+       console.log(this.main);
+       },
+
+
+
+
+      _listTap: function() {
+        this.$.drawerPanel.closeDrawer();
+      },
+ 
+      _isMobileChanged: function(isMobile) {
+        this.mainMode = isMobile ? 'seamed' : 'cover';
+        this.drawerWidth = isMobile ? '' : '290px';
+        this.toolbarClass = isMobile ? '' : 'tall';
+        var flag = 0;
+        isMobile ? Polymer.dom(document.getElementById("testparent")).removeChild(Polymer.dom(document.getElementById("testparent")).childNodes[0]):'';
+        
+        this.updateStyles();
+        
+      },
+       hresponse: function(request) {
+    console.log(request.detail.response);
+    
+    
+   
+
+  },
+
+      _selectedIndexChanged: function() {
+        // if(this.selectedIndex === 0){ this.selectpage=0; }
+        // if(this.selectedIndex === 1){ this.selectpage=1; }
+        // if(this.selectedIndex === 2){ this.selectpage=2; }
+        // if(this.selectedIndex === 3){ this.selectpage=3; }
+        // if(this.selectedIndex === 4){ this.selectpage=4; }
+        // if(this.selectedIndex === 5){ this.selectpage=5; }
+    },
+
+
+    
+
+    });
+
+  </script>    
+
+</dom-module>

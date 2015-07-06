@@ -1,0 +1,138 @@
+<dom-module id="profile-tab">
+	<style>
+	:host{
+	@apply(--layout-horizontcal);
+	}
+	[main]{
+
+			@apply(--layout-horizontal);
+			@apply(--layout-start-justified);
+			background:#2196F3;
+			width: 80%;
+			margin-left: 2%;
+			margin-top: 1%;
+			font-family: 'Roboto', 'Noto', sans-serif;
+			-webkit-font-smoothing: antialiased;
+			text-rendering: optimizeLegibility;
+			color: #ffffff;
+
+			}
+    [topbox] {
+      width: 100%;
+      @apply(--layout-start);
+      @apply(--layout-horizontal);
+      		margin-left: 2%;
+			font-family: 'Roboto', 'Noto', sans-serif;
+			-webkit-font-smoothing: antialiased;
+			text-rendering: optimizeLegibility;
+			color: black;
+	}
+
+    [profilepic]{
+    	
+    	margin-left: 2%;
+    	margin-top:1%; 
+  		width:80%;
+
+  		/*@apply(--layout-around-justified);*/
+/*  		@apply(--layout-wrap);
+*/  		@apply(--flex-fit);
+
+
+/*-webkit-box-shadow: 10 0 0px rgb(0,0,0);
+-moz-box-shadow: 10 0 0px rgb(0,0,0); */ 
+@apply(--layout-horizontal);   
+    }
+    [about]{
+    	width:80%;
+    	height: 200px;
+    	margin-top:1%;
+    	margin-left: 2%;
+    	margin-right: 2%;
+    	text-align: justify;
+    text-justify: inter-word;
+    }
+        [activity]{
+    	width:80%;
+    	height: 200px;
+    	margin-top:1%;
+    	margin-left: 2%;
+    	margin-right: 2%;
+    	text-align: justify;
+    text-justify: inter-word;
+    }
+
+    iron-image{
+margin-right: 2%;
+    }
+	</style>
+
+	<template>
+
+
+<div main>
+
+<paper-tabs selected="0" id="tab1">
+  <paper-tab>About</paper-tab>
+  <paper-tab>Bagdes</paper-tab>
+  <paper-tab>Activity</paper-tab>
+</paper-tabs>
+<script>
+  document.addEventListener('click', function(e) {
+    var tab = document.getElementById("tab1").selected;
+    var pages =document.querySelector('iron-pages');
+    // console.log(document.getElementById("tab1").selected);
+    pages.selected=tab;
+  });
+</script>
+</div>
+<div topbox>
+
+</div>
+
+<iron-pages selected=0>
+  <div about>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+ </div>
+  <div profilepic >	
+  		<div>
+			<!-- <paper-material elevation="2"> -->
+						<iron-image style="width:100px; height:100px;"  fadein="True"  sizing="cover" src="http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/guitar.jpg"></iron-image>
+			<!-- </paper-material> -->
+		</div>
+		<div  >	
+			<!-- <paper-material elevation="2"> -->
+						<iron-image style="width:100px; height:100px;"  fadein="True"  sizing="cover" src="http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/shout.jpg"></iron-image>
+			<!-- </paper-material> -->
+		</div>
+		<div >	
+			<!-- <paper-material elevation="2"> -->
+						<iron-image style="width:100px; height:100px;"  fadein="True"  sizing="cover" src="http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/badge1.jpg"></iron-image>
+			<!-- </paper-material> -->
+		</div>
+				<div >	
+			<!-- <paper-material elevation="2"> -->
+						<iron-image style="width:100px; height:100px;"  fadein="True"  sizing="cover" src="http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/fire.jpg"></iron-image>
+			<!-- </paper-material> -->
+		</div>
+
+	</div>
+
+  <div activity>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  </div>
+
+</iron-pages>
+</div>
+
+
+
+ 
+	</template>
+
+	<script>
+
+	Polymer({
+		is:"profile-tab",
+		
+
+	});
+	</script>

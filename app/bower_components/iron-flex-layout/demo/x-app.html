@@ -1,0 +1,107 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE
+The complete set of authors may be found at http://polymer.github.io/AUTHORS
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
+-->
+
+<link rel="import" href="../iron-flex-layout.html">
+
+<dom-module id="x-app">
+
+  <style>
+
+    :host {
+      @apply(--layout-vertical);
+            @apply(--layout-center-justified);
+
+    }
+
+
+    [main] {
+      @apply(--layout-vertical);
+           @apply(--layout-vertical);
+      @apply( --layout-scroll);
+      @apply(--layout-center-justified);
+
+    }
+
+    [content] {
+      @apply(--layout-horizontal);
+      overflow: auto;
+    }
+        [menucontent] {
+      @apply(--layout-vertical);
+      overflow: auto;
+    }
+
+    [card] {
+      height: 100px;
+      width: 100px;
+      margin: 16px auto;
+      background-color: #eee;
+      @apply(--layout-vertical);
+      @apply( --layout-scroll);
+      @apply(--layout-center);
+      @apply(--layout-center-justified);
+
+ 
+    }
+    [flex]{
+      @apply(--layout-flex);
+    }
+
+
+
+
+  </style>
+
+  <template>
+
+
+    <div main>
+
+      <div content>
+        <div card>CARD 1</div>
+        <div card>CARD 2</div>
+        <div card>CARD 3</div>
+        <div card>ITEM 4</div>
+        <div card>ITEM 5</div>
+      </div>
+      <div flex></div>
+      <div content>
+        <div card>CARD 1</div>
+        <div card>CARD 2</div>
+        <div card>CARD 3</div>
+        <div card>ITEM 4</div>
+        <div card>ITEM 5</div>
+      </div>
+
+
+      <div content>
+        <div card>CARD 1</div>
+        <div card>CARD 2</div>
+        <div card>CARD 3</div>
+        <div card>ITEM 4</div>
+        <div card>ITEM 5</div>
+      </div>
+
+    </div>
+
+
+
+
+  </template>
+
+</dom-module>
+<script>
+
+  Polymer({
+    is: 'x-app'
+  });
+
+</script>
+

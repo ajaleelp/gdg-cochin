@@ -1,0 +1,52 @@
+<dom-module id="my-greeting">
+
+  <template>
+  hello world
+  <button on-click="order">Order</button> 
+    <template is="dom-repeat" id="menu" items="{{menuItems.employees}}">
+        <div>
+          <span>{{item.url}}</span>
+          <span>{{item.ordered}}</span> 
+          
+        </div>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-greeting',
+      ready: function() {
+
+      },
+      order: function(e) {
+        // var model = e.model;
+        // model.set('item.ordered', model.item.ordered+1);
+        console.log("hello");
+                 this.menuItems = {
+                      "name": "arunp",
+                      "rep": "200",
+                      "employees": 
+                            [
+                            {
+                            "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/fire.jpg"
+                            },
+                            {
+                            "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/fire.jpg"
+                            },
+                            {
+                            "url": "http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/fire.jpg"
+                            }
+                            ]
+                          }; 
+
+
+
+      }
+    });
+  </script>
+
+</dom-module>
+
+
+
+

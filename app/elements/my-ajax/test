@@ -1,0 +1,75 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="my-ajax">
+<style>
+</style>
+<template>
+
+  <iron-ajax
+      id="ajax"
+      url=""
+      handle-as="json"
+      on-response="hresponse"
+      debounce-duration="300"
+  </iron-ajax>
+  <span>{{arunp}}</span>
+<input  id = "input1" is="iron-input" bind-value="{{arunp}}"><p>
+<button on-click="setajax">Click me</button>
+
+
+
+<div class="vertical   justified wrap layout" style="width:400px;height:200px;">
+
+<template is="dom-repeat" items="{{data}}">
+    <paper-material elevation=1>  
+    <div class="horizontal  justified layout" > 
+    
+        <span >{{item.id}}</span>
+        <span >{{item.title}}</span>
+        <span >{{item.id}}</span> 
+    
+    </div> 
+    </paper-material> 
+</template>
+
+</template>
+<script>
+Polymer({
+  is: "my-ajax",
+
+      properties: {
+        // declare the owner property
+        data: {
+                type: Object,
+                notify: true,
+        },
+        parameter:{
+                type: Object,
+                notify:true
+        },
+         arunp:{
+           type:String,
+           notify:true,
+           
+         }
+      },
+  setajax: function () {
+    this.$.ajax.url = "http://jsonplaceholder.typicode.com/posts";
+    this.$.ajax.params = {"userId" : this.$.input1.value};
+    this.$.ajax.generateRequest();
+  },
+  hresponse: function(request) {
+    console.log(this.$.input1.value);
+    this.data=this.$.ajax.lastResponse;
+    
+  }
+});
+</script>
+</dom-module>

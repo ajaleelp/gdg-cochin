@@ -1,0 +1,85 @@
+<dom-module id="gdg-profile">
+	<style>
+			:host{
+				@apply(--layout-horizontcal);
+
+
+			}
+			[main]{
+				@apply(--layout-vertical);
+				@apply(--layout-end-justified);
+				
+			}
+    [topbox] {
+      height: auto;
+      width: 100%;
+      background-color: #ffffff;
+      @apply(--layout-start);
+      @apply(--layout-horizontal);
+      
+}
+
+    [midbox] {
+      height:300px;
+      width: 100%;
+      background-color: #ffffff
+
+   
+/*      @apply( --layout-scroll);
+      @apply(--layout-start);
+      @apply(--layout-center-justified);*/
+}
+
+
+    [profilepic]{
+    	height:200px;
+    	width:200px;
+    	margin-left: 2%;
+    	margin-top: 1%; 
+
+
+@apply(--shadow-elevation-6dp);
+/*-webkit-box-shadow: 10 0 0px rgb(0,0,0);
+-moz-box-shadow: 10 0 0px rgb(0,0,0); */    
+    }
+
+    [profilename]{
+    	 font-family: 'Roboto', 'Noto', sans-serif;
+	    -webkit-font-smoothing: antialiased;
+	    text-rendering: optimizeLegibility;
+    	margin-left:2%;
+    	font-size: 40px;
+    	@apply(--layout-flex);
+    	@apply(--layout-self-end);
+    }
+	</style>
+
+	<template>
+
+
+	<div main>
+	<div topbox>
+		<div profilepic>
+			<!-- <paper-material elevation="2"> -->
+						<iron-image style="width:200px; height:200px;"  fadein="True"  sizing="cover" src="http://localhost:8888/polymer-starter-kit-light-1.0.2/app/bower_components/arun.jpg"></iron-image>
+			<!-- </paper-material> -->
+		</div>
+		 <div profilename>Arun P</div>
+	</div>
+	<div midbox><span><profile-tab></profile-tab></span></div>
+
+	</div>
+
+ 
+
+
+	</template>
+
+	<script>
+
+	Polymer({
+		is:"gdg-profile",
+		
+
+	});
+	</script>

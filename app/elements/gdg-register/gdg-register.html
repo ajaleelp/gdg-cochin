@@ -1,0 +1,95 @@
+<dom-module id="gdg-register">
+<style>
+::host{
+  @apply(--shadow-elevation-2dp);
+};
+ .submit_button{
+   		background-color:#1976D2;
+   		
+   }
+[login]{
+
+@apply(--layout-vertical);
+@apply(--layout-center);
+@apply(--layout-center-justified);
+@apply(--layout-fit);
+
+}
+gold-email-input{
+  width: 320px;
+}
+paper-input-container{
+  width: 320px;
+}
+
+</style>
+<template>
+
+<br></br>
+<div class="horizontal  layout"  id = "register-parent">
+<form is="iron-form" id="form">
+
+
+      <div login>
+
+                    <div id="alert" hidden>Please check your username and password</div>
+                    <gold-email-input required auto-validate error-message="Please enter a valid email" label="Email" ></gold-email-input>
+                    <br>
+                    <paper-input-container>
+                                <label>Username</label>
+                                <input required is="iron-input" id="password1" bind-value="{{name}}">
+                    </paper-input-container>
+
+                    <br>
+                    <paper-input-container>
+                        			  <label>Password</label>
+                        			  <input type = "password" is="iron-input" id="password1" >
+                    </paper-input-container>
+                    <br>
+                    <paper-input-container>
+                                <label>Password</label>
+                                <input type = "password" is="iron-input" id="password2" >
+                    </paper-input-container>
+
+
+            				            <br><br><br><br>
+                  				<paper-button raised class="submit_button" style="width:200px;" on-click="_submitclicked">
+                  				<paper-ripple></paper-ripple>
+                  					<span style="color:white;text-rendering: optimizeLegibility;" >Submit</span>
+                  				</paper-button>
+
+
+
+      			</div>
+           
+
+</div>
+</form>
+</div>
+</template>
+<script>
+Polymer({
+  is: "gdg-register",
+  
+  properties:{
+  		name:{
+  			type:String,
+  			notify:true,
+  			observer:"_nameChanged",
+  		},
+ 	 },
+	_nameChanged:function(){
+				console.log(this.name);
+
+	},
+  _submitclicked:function(){
+
+     // document.getElementById("register-parent").appendChild(x)
+     document.getElementById("alert").hidden = false;
+        
+        
+
+  },  
+});
+</script>
+</dom-module>
