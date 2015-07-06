@@ -323,11 +323,8 @@ height: 600px;
     <br><br><br>
      <span member-heading><center> Members</center> </span><br><br><br>
     <div member-container>
-
-
-    
      <template is="dom-repeat" id="menu" items="{{main.members}}">
-                                               
+                                                <!-- ##$#######base unit############ -->
                                                           <div member>
                                                           <paper-material>
                                                                     <div member-picture>
@@ -343,7 +340,7 @@ height: 600px;
                                                                 
                                                           </div>  
                                          
-                                                      
+                                                      <!-- ########base unit########### -->
                    </template>                                              
 
                                                        
@@ -410,11 +407,9 @@ height: 600px;
                                           <div event-location >Location</div>
                                           <div upcoming-events>
 
-                                              <google-map disable-default-ui  disable-zoom zoom="15" latitude$="{{main.events.latitude}}" longitude$="{{main.events.longitude}}" fit-to-markers>
-                                              <google-map-marker latitude$= "{{main.events.latitude}}"  longitude$="{{main.events.longitude}}"></google-map-marker>
-                                              
-                                              </google-map>
-                                              
+                                            <!--   <google-map disable-default-ui  disable-zoom zoom="15" latitude$="{{main.events.latitude}}" longitude$="{{main.events.longitude}}" fit-to-markers>
+                                              </google-map> -->
+                                                <div>{{main.events.longitude}}</div> 
                                               
                                             
 
