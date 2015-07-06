@@ -133,9 +133,9 @@ height: 100px;
                                                     <template is="dom-repeat" id="menu" items="{{profile.certificates}}">                                                        
                                                       <div certificate >
                                                         <div Cbox>
-                                                            <iron-image style="width:150px; height: 100px;"  fadein="True"  sizing="cover" src$="{{item.url}}"></iron-image>
+                                                            <iron-image style="width:150px; height: 100px;"  fadein="True"  sizing="cover" src="http://photos1.meetupstatic.com/photos/event/2/3/a/c/600_433329132.jpeg"></iron-image>
                                                         </div>
-                                                        <span certificate-description>{{item.description}}</span>
+                                                        <span certificate-description>Arun Purushothaman successfully completed android study jam conducted by GDG Cochin on 18 March 2014</span>
                                                       </div>
                                                     </template>
                                               </div> 
@@ -182,7 +182,7 @@ height: 100px;
   <br>
   <div certificate-box>
                                                   <div certifcate-border >
-                                                       <iron-image style="width:300px; height:200px;"  fadein="True"  sizing="cover" src$="{{profile.certificate-details.url}}"></iron-image>
+                                                       <iron-image style="width:300px; height:200px;"  fadein="True"  sizing="cover" src$="http://photos1.meetupstatic.com/photos/event/2/3/a/c/600_433329132.jpeg"></iron-image>
                                                     </div>
                                                     <div certificate-details >
                                                       This certifcate was awarded to Mr Arun Purushtohaman for successfully completing the android course conducted by Google Developer Group Cochin along side Udacity and Google. The course was followed by a project which Mr Arun Purushothaman completed within the stiuplated time . The certificate was awarded on 18 March 2014.
@@ -224,7 +224,7 @@ height: 100px;
         },
         selectedIndex: {
           type: Number,
-          value: 2,
+          value: 0,
           observer: '_selectedIndexChanged'
       },
 
